@@ -3,7 +3,7 @@
 var data;
 
 // Fetch and parse data from CSV
-Papa.parse('https://github.com/legodud3/heatpursuit/blob/main/US_City_Temp_Data.csv', {
+Papa.parse('US_City_Temp_Data.csv', {
   download: true,
   header: true, 
   complete: function(results) {
