@@ -12,7 +12,7 @@ window.onload = function() {
     });
 };
 
-function loadTemperature() {
+window.loadTemperature() =function() {
     let city = "atlanta";
     let date = "01/04/1984";
     
