@@ -2,15 +2,14 @@
 
 var data;
 
-// Fetch and parse data from CSV
-Papa.parse('https://raw.githubusercontent.com/legodud3/heatpursuit/main/US_City_Temp_Data.csv', {
-  download: true,
-  header: true, 
-  complete: function(results) {
-    data = results.data;
-    console.log("CSV Data Loaded: ", data);  // Logging
-  }
-})
+// Fetch data from CSV
+fetch('https://raw.githubusercontent.com/legodud3/heatpursuit/main/US_City_Temp_Data.csv')
+    .then(response => response.text())
+    .then(csv => {
+        // Parse the CSV data
+        data = new CSV(csv, { header: true }).parse();
+        console.log("CSV Data Loaded: ", data);  // Logging
+     });
 
 function search() {
     console.log("Search function entered");  // Logging
