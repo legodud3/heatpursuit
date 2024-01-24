@@ -3,18 +3,26 @@
 var data;
 
 // Fetch and parse data from CSV
-Papa.parse('https://YOUR-USERNAME.github.io/YOUR-REPO/YOUR-FILE.csv', {
+Papa.parse('https://github.com/legodud3/heatpursuit/blob/main/US_City_Temp_Data.csv', {
   download: true,
   header: true, 
   complete: function(results) {
     data = results.data;
+    console.log("CSV Data Loaded: ", data);  // Logging
   }
 })
 
 function search() {
+    console.log("Search function entered");  // Logging
+
     let city = document.getElementById("city").value.trim();
+    console.log("City: ", city);  // Logging
+
     let year = document.getElementById("year").value.trim();
-    let date = "01/" + document.getElementById("date").value.trim(); // As date is always the first January
+    console.log("Year: ", year);  // Logging
+
+    let date = "01/" + document.getElementById("date").value.trim();
+    console.log("Date: ", date);  // Logging
 
     let resultDiv = document.getElementById("result");
 
@@ -26,6 +34,8 @@ function search() {
         resultDiv.innerHTML = "Error: All fields must be filled.";
         return; // Exit the function
     }
+
+    console.log("Searching data...");  // Logging
   
     // Search for corresponding data
     for (let i = 0; i < data.length; i++) {
@@ -34,9 +44,10 @@ function search() {
 
         // Check year and date match
         if (rowDateItem[2] == year && rowDateItem[1] == date) {
-            //If city exists in the current row, then display corresponding temperature
+            // If city exists in the current row, then display corresponding temperature
             if(rowData[city]) {
                 let temperature = rowData[city]; // Assuming city name matches column name exactly
+                console.log("Match found!", temperature); // Logging
                 resultDiv.innerHTML = "Temperature: " + temperature + '°F';
                 return; // Exit the function after displaying temperature
             } else {
