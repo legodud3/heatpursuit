@@ -11,3 +11,18 @@ window.onload = function() {
         }
     });
 };
+
+function loadTemperature() {
+    let city = "atlanta";
+    let date = "01/04/1984";
+    
+    let matchingData = window.dataset.find(function(row) {
+        return row["time"].toLowerCase() === date.toLowerCase() && row[city];
+    });
+    
+    if (matchingData) {
+        document.getElementById("temperature").innerText = `Temperature in ${city} on ${date}: ${matchingData[city]}`;
+    } else {
+        document.getElementById("temperature").innerText = `No data found for ${city} on ${date}.`;
+    }
+}
